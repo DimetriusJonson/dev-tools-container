@@ -7,4 +7,4 @@ COPY target/work/dist /app/dist
 
 EXPOSE 80
 
-CMD ["/app/server", "--addr=127.0.0.1:80"]
+CMD ["/app/server", "--addr=0.0.0.0:80"]
