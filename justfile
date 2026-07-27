@@ -7,7 +7,15 @@ set dotenv-load := true
 default:
     @just --list
 
+build:
+    rm -rf dev-tools
+    git clone https://github.com/DimetriusJonson/dev-tools.git
+    docker buildx build -f Dockerfile_build --output type=local,dest=./target .
+    docker build --no-cache -t dev-tools .
+
 build-target:
+    rm -rf dev-tools
+    git clone https://github.com/DimetriusJonson/dev-tools.git
     docker buildx build -f Dockerfile_build --output type=local,dest=./target .
     
 build-final:

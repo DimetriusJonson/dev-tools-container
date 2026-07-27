@@ -1,7 +1,7 @@
 FROM rust:1.97.1-alpine3.23 AS builder
 
 RUN apk update && \
-    apk add --no-cache bash curl libc-dev binaryen git libc6-compat musl-dev
+    apk add --no-cache bash curl libc-dev binaryen libc6-compat musl-dev
 
 WORKDIR /work
 
@@ -10,9 +10,7 @@ RUN rustup target add wasm32-unknown-unknown
 RUN cargo install --locked trunk
 RUN cargo install --locked wasm-bindgen-cli
 
-RUN git clone https://github.com/DimetriusJonson/dev-tools.git
-
-WORKDIR /work/dev-tools
+COPY dev-tools ./
 
 RUN trunk build --release
 RUN cargo build --release --bin server
@@ -23,6 +21,6 @@ FROM scratch AS runner
 
 WORKDIR /work
 
-COPY --from=builder /work/dev-tools/dist /work/dist
-COPY --from=builder /work/dev-tools/target/release/server /work/server
+COPY --from=builder /work/dist /work/dist
+COPY --from=builder /work/target/release/server /work/server
 
