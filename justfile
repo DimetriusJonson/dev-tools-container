@@ -7,9 +7,14 @@ set dotenv-load := true
 default:
     @just --list
 
-build:
-    docker buildx build --output type=local,dest=./target .
+build-target:
+    docker buildx build -f Dockerfile_build --output type=local,dest=./target .
     
-    
+build-final:
+    docker build -t dev-tools .
+
+run:
+    docker run --rm -p 8080:80 dev-tools:latest
+
 
 
