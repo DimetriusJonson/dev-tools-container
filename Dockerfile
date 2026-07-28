@@ -1,5 +1,4 @@
 FROM scratch AS runner
-#FROM alpine:3.22.4 AS runner
 
 WORKDIR /app
 
