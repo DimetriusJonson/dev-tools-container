@@ -1,26 +1,22 @@
 FROM rust:1.97.1-alpine3.23 AS builder
 
 RUN apk update && \
-    apk add --no-cache bash curl libc-dev binaryen libc6-compat musl-dev
+    apk add --no-cache bash curl libc-dev binaryen
 
-WORKDIR /work
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/leptos-rs/cargo-leptos/releases/download/v0.3.6/cargo-leptos-installer.sh | sh
 
 RUN rustup target add wasm32-unknown-unknown
 
-RUN cargo install --locked trunk
-RUN cargo install --locked wasm-bindgen-cli
+WORKDIR /work
 
 COPY dev-tools ./
 
-RUN trunk build --release
-RUN cargo build --release --bin server
-
-RUN mkdir build
+RUN cargo leptos build --release -vv
 
 FROM scratch AS runner
 
 WORKDIR /work
 
-COPY --from=builder /work/dist /work/dist
+COPY --from=builder /work/site /work/site
 COPY --from=builder /work/target/release/server /work/server
 

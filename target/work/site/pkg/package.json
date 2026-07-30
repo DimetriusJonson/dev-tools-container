@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@highlightjs/cdn-assets": "^11.10.0",
+    "@tailwindcss/cli": "^4.3.2",
+    "tailwindcss": "^4.3.2",
+    "tw-animate-css": "^1.2.5"
+  }
+}
