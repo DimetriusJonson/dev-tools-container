@@ -11,6 +11,8 @@ WORKDIR /work
 
 COPY dev-tools ./
 
+ENV LEPTOS_TAILWIND_VERSION="v4.3.3"
+
 RUN cargo leptos build --release -vv
 
 FROM scratch AS runner
