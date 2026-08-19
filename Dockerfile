@@ -1,4 +1,4 @@
-FROM scratch AS runner
+FROM gcr.io/distroless/cc-debian12:nonroot AS runner
 
 WORKDIR /app
 
