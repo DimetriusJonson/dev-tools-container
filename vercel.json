@@ -1,7 +1,7 @@
 {
   "services": {
     "frontend": {
-      "root": "/",
+      "root": "/container",
       "entrypoint": "Dockerfile.vercel"
     }
   },
