@@ -11,7 +11,7 @@ build:
     rm -rf dev-tools
     git clone https://github.com/DimetriusJonson/dev-tools.git
     docker buildx build -f Dockerfile_build --output type=local,dest=./target .
-    docker build --no-cache -t dev-tools .
+    docker build --no-cache -t dev-tools -f Dockerfile.vercel .
 
 build-target:
     rm -rf dev-tools
