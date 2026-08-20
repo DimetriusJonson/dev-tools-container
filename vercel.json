@@ -1,17 +1,8 @@
 {
-  "services": {
-    "backend": {
-      "root": "/container",
-      "entrypoint": "Dockerfile.vercel",
-      "runtime": "container"
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": {
-        "service": "backend"
-      }
+      "destination": "/container/$1"
     }
   ]
 }

@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim AS runner
 
-WORKDIR /app
+WORKDIR /
 
 COPY --chmod=755 target/work/server /app/
 COPY target/work/Cargo.toml /app/
@@ -8,7 +8,7 @@ COPY target/work/site /app/site
 
 EXPOSE 80
 
-ENV LEPTOS_SITE_ROOT=site \
+ENV LEPTOS_SITE_ROOT=container/site \
     LEPTOS_SITE_ADDR=0.0.0.0:80
 
 #CMD ["/app/server"]
