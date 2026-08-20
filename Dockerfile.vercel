@@ -1,6 +1,4 @@
-#FROM debian:bookworm-slim AS runner
-FROM alpine:3.23.5 AS runner
-#FROM scratch
+FROM debian:bookworm-slim AS runner
 
 WORKDIR /
 
@@ -12,5 +10,4 @@ EXPOSE 80
 ENV LEPTOS_SITE_ROOT=/app/site \
     LEPTOS_SITE_ADDR=0.0.0.0:80
 
-#ENTRYPOINT ["/bin/sh", "-c", "echo 'Container starting...' && /app/server"]
-ENTRYPOINT ["/app/server"]
+ENTRYPOINT ["/bin/sh", "-c", "echo 'Container starting...' && /app/server"]
