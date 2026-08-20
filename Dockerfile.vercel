@@ -8,7 +8,7 @@ COPY target/work/site /app/site
 
 EXPOSE 80
 
-ENV LEPTOS_SITE_ROOT=container/site \
+ENV LEPTOS_SITE_ROOT=site \
     LEPTOS_SITE_ADDR=0.0.0.0:80
 
 #CMD ["/app/server"]
