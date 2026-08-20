@@ -18,6 +18,5 @@ FROM scratch AS runner
 WORKDIR /work
 
 COPY --from=builder /work/site /work/site
-COPY --from=builder /work/Cargo.toml /work
 COPY --from=builder /work/target/release/server /work/server
 
