@@ -1,5 +1,4 @@
 FROM debian:bookworm-slim AS runner
-#FROM alpine:3.23.5 AS runner
 
 WORKDIR /
 
