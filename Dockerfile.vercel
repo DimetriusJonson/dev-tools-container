@@ -3,6 +3,7 @@ FROM gcr.io/distroless/cc-debian12 AS runner
 WORKDIR /app
 
 COPY --chmod=755 target/work/server /app/
+COPY target/work/Cargo.toml /app/
 COPY target/work/site /app/site
 
 EXPOSE 80
