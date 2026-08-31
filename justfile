@@ -8,18 +8,18 @@ default:
     @just --list
 
 build:
-    rm -rf dev-tools
-    git clone https://github.com/DimetriusJonson/dev-tools.git
-    docker buildx build -f Dockerfile_build --progress=plain --output type=local,dest=./target .
+    git -C dev-tools pull 
+    docker buildx build -f Dockerfile.build --progress=plain --output type=local,dest=./target .
     docker build --no-cache -t dev-tools -f Dockerfile.vercel .
 
+git-pull:
+    git -C dev-tools pull
+
 build-target:
-    rm -rf dev-tools
-    git clone https://github.com/DimetriusJonson/dev-tools.git
-    docker buildx build -f Dockerfile_build --output type=local,dest=./target .
+    docker buildx build -f Dockerfile.build --progress=plain --output type=local,dest=./target .
     
 build-final:
-    docker build --no-cache -t dev-tools .
+    docker build --no-cache -t dev-tools -f Dockerfile.vercel .
 
 run:
     docker run --rm -p 8080:80 dev-tools:latest
